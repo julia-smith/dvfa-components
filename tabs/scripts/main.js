@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  initInteraction();
+  //initInteraction();
 });
 
 function initInteraction(){

@@ -1,0 +1,87 @@
+nav.dvfa-ms-tabs, nav.dvfa-ss-tabs {
+        width:100%;
+        float: left;
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: stretch; 
+        align-items: stretch; 
+      }
+      .dvfa-option {
+        width:100%;
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: stretch; 
+        align-items: stretch; 
+      }
+
+      .no-touch .dvfa-option:hover {
+        background-color:#E6E6E6;
+      }
+
+      .no-touch .dvfa-option.dvfa-selected, .dvfa-option.dvfa-selected {
+        background-color:#006b8e;
+        color:#ffffff;
+      }
+
+      .dvfa-option label {
+        width:100%;  /*label should fill container so the whole row is clickable */
+        color:#000000;
+        text-align:center;
+        font-size:1.25em;
+        background-color:#fff;
+        color:#222;
+        display: inline-block;
+        padding:14px;
+        position:relative;
+        z-index:4;
+      }
+
+
+
+
+      .dvfa-option label:hover, .dvfa-option input:focus + label {
+        cursor:pointer;
+        background-color:rgba(204,204,204,.75)
+      }
+
+      .dvfa-option input ~ label {
+        box-shadow:none;
+      }
+
+      .dvfa-option input:focus ~ label, .dvfa-option input:active ~ label{
+        /*box-shadow:0px 0px 8px rgba(0,214,85,.9);
+        box-shadow:0px 0px 4px rgba(0,0,0,.4);*/
+      }
+
+
+      input[type=checkbox], input[type=radio] {
+        /* hidden input still accessible to screen readers */
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+      }
+
+      .dvfa-option input:checked + label {
+        background-color:#444;
+        color:#fff
+      }
+
+      .dvfa-option input:checked:focus + label {
+        background-color:#222;
+      }
