@@ -15,6 +15,9 @@
       height : 100%;
 
     }
+    svg:focus {
+      outline:none;
+    }
     .box {
       position: absolute;
       width: 30px;
@@ -45,7 +48,6 @@
       top: 100%;
       height: 15%;
       background-color: white;
-
     }
 
     #tooltip.hed {
@@ -80,6 +82,11 @@
       border-bottom: 1px solid black;*/
     }
 
+    #hed:focus {
+      outline:none;
+      background-color:#ccc;
+    }
+
     #expanded {
       background-color: white;
       height: 100%;
@@ -87,6 +94,10 @@
       position: absolute;
       top: 97%;
       right: 0;
+    }
+    #expanded:focus {
+      outline:none;
+      background-color:#f5f5f5;
     }
 
     @media only screen and (max-width: 660px){ 
@@ -104,7 +115,7 @@
 <body>
   <div id = 'wrapper'>
     <div id = 'map-wrap'>
-<svg version="1.1" id="Map_of_the_counties_of_California_x2C__without_legend" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xapgimg="http://ns.adobe.com/xap/1.0/g/img/" xmlns:cc="http://web.resource.org/cc/" xmlns:ns="http://ns.adobe.com/Variables/1.0/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xap="http://ns.adobe.com/xap/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns0="http://ns.adobe.com/SaveForWeb/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" sodipodi:docbase="d:\Home\Wikipedia" sodipodi:docname="California county map.svg" inkscape:version="0.44" sodipodi:version="0.32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 620.843 733.026" enable-background="new 0 0 620.843 733.026" xml:space="preserve" aria-labelledby="title" aria-describedby="desc" role="img">
+<svg version="1.1" id="Map_of_the_counties_of_California_x2C__without_legend" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xapgimg="http://ns.adobe.com/xap/1.0/g/img/" xmlns:cc="http://web.resource.org/cc/" xmlns:ns="http://ns.adobe.com/Variables/1.0/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xap="http://ns.adobe.com/xap/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns0="http://ns.adobe.com/SaveForWeb/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" sodipodi:docbase="d:\Home\Wikipedia" sodipodi:docname="California county map.svg" inkscape:version="0.44" sodipodi:version="0.32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 620.843 733.026" enable-background="new 0 0 620.843 733.026" xml:space="preserve" aria-labelledby="title" aria-describedby="desc"  tabindex="0">
 <title>California's concealed guns</title>
 <desc>A choropleth map of California's concealed carry permits, colored by the number of active permits in each county.</desc>
 <switch>
@@ -2294,12 +2305,18 @@
 
 
     </div>
-    <div id = 'tooltip'>
-      <div id = 'hed'><span></span><div id='close'></div></div>
-      <div id = 'expanded'></div>
+    <div id="tooltip">
+      <div id="hed" tabindex="-1">
+        <span></span>
+      </div>
+      <div id="expanded"></div>
     </div>
   </div>
     <script>
+
+    $(document).ready(function(){
+      $('.cir-county').attr('tabindex', 0);
+    });
 
     //tooltip template
 
@@ -2312,7 +2329,9 @@
 
     //tooltip hover functions
     var displayName = function(){
-      if ($("#tooltip").hasClass('expanded')) {
+      var $tooltip = $('#tooltip');
+      $tooltip.find('#hed').attr('tabindex', -1).trigger('focus');
+      if ($tooltip.hasClass('expanded')) {
         $("#hed").unbind("click");
         $("#hed").click(minimize);
       } else {
@@ -2321,7 +2340,7 @@
       }
       var county = $(this);
       var tooltipData = {approved : county.attr('data-approved'), pending : county.attr('data-pending'), population : county.attr('data-pop')};
-      $("#tooltip").addClass('hed');
+      $tooltip.addClass('hed');
       $('#hed span').text(county.attr('data-name'));
       $("#expanded").html(buildTooltip(tooltipData));
     };
@@ -2338,6 +2357,22 @@
       $("#hed").unbind("click");
       $("#hed").click(displayExpanded);
     };
+
+    $('#tooltip').keydown(function(e){ 
+      var code = e.which;
+      // 13 = Return, 32 = Space
+      if ((code === 13) || (code === 32)) {
+        $(this).find('#hed').trigger('click');
+        $(this).find('#expanded').attr('tabindex', -1).trigger('focus');
+      }
+    });
+    $('.cir-county').keydown(function(e){ 
+      var code = e.which;
+      // 13 = Return, 32 = Space
+      if ((code === 13) || (code === 32)) {
+        $(this).trigger('click');
+      }
+    });
 
     
 
