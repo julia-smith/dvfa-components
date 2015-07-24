@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="permits">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+
+    <title>DVFA Single-Selection Tabs</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/tabs.css">
+    <style>
+
+      nav.dvfa-ms-tabs {
+        display: -ms-flexbox;      /* TWEENER - IE 10 */
+        display: -webkit-flex;     /* NEW - Chrome */
+        display: flex; 
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-content: space-between;
+        -ms-flex-line-pack: justify;
+        align-content: space-between;
+        -webkit-align-items: stretch;
+        -ms-align-items: stretch;
+        align-items: stretch;
+      }
+      .dvfa-option {
+        width:100%;
+        margin-bottom:10px;
+        position:relative;
+        color:#000000;
+      }
+
+      .no-touch .dvfa-option:hover {
+        background-color:#E6E6E6;
+      }
+
+      .no-touch .dvfa-option.dvfa-selected, .dvfa-option.dvfa-selected {
+        background-color:#006b8e;
+        color:#ffffff;
+      }
+
+      .dvfa-option label {
+        width:100%;  /*label should fill container so the whole row is clickable */
+        text-align:center;
+        font-size:1.25em;
+        background-color:#fff;
+        color:#222;
+        display: inline-block;
+        padding:14px;
+        position:relative;
+        z-index:4;
+      }
+
+
+
+
+      .dvfa-option label:hover, .dvfa-option input:focus + label {
+        cursor:pointer;
+        background-color:rgba(204,204,204,.75)
+      }
+
+      .dvfa-option input ~ label {
+        box-shadow:none;
+      }
+
+      .dvfa-option input:focus ~ label, .dvfa-option input:active ~ label{
+        /*box-shadow:0px 0px 8px rgba(0,214,85,.9);
+        box-shadow:0px 0px 4px rgba(0,0,0,.4);*/
+      }
+
+      .dvfa-checkbox {
+        display:inline-block;
+        background-color:#ffffff;
+        border-right:1px solid #000000;
+        position:absolute;
+        min-height:100%;
+        min-width:15%;
+        text-align:center;
+      }
+
+      .dvfa-checkbox span { 
+        color: #006b8e;
+        font-size: 5em;
+        display: inline-block;
+        margin-top: -.45em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index:5;
+      }
+
+      .dvfa-checkbox .dvfa-hit {
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 5;
+        min-height: 100%;
+      }
+
+      .dvfa-checkbox .dvfa-hit:hover {
+        cursor:pointer;
+      }
+
+      input[type=checkbox] {
+        /* hidden input still accessible to screen readers */
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+      }
+
+      .dvfa-option input:checked + label {
+        background-color:#444;
+        color:#fff
+      }
+
+      .dvfa-option input:checked:focus + label {
+        background-color:#222;
+      }
+
+    </style>
+
+
+
+
+    <nav id="dvfa-group-1" class="dvfa-ms-tabs" data-limit="1">
+          <div class="dvfa-option">
+            <input type="checkbox" id="c1" name="cc"/>
+            <label for="c1">Option 1</label>
+          </div>
+          <div class="dvfa-option">
+            <input type="checkbox" id="c2" name="cc"/>
+            <label for="c2">Option 2</label>
+          </div>
+          <div class="dvfa-option">
+            <input type="checkbox" id="c3" name="cc"/>
+            <label for="c3">Option 3</label>
+          </div>
+          <div class="dvfa-option">
+            <input type="checkbox" id="c4" name="cc"/>
+            <label for="c4">Optionoptionoption 4</label>
+          </div>
+    </nav>
+
+
+
+
+	
+    <script type="text/javascript" src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+  </body>
+</html>
