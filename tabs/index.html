@@ -15,28 +15,36 @@
     <link rel="stylesheet" href="styles/tabs.css">
     <style>
 
-      nav.dvfa-ms-tabs {
-        display: -ms-flexbox;      /* TWEENER - IE 10 */
-        display: -webkit-flex;     /* NEW - Chrome */
-        display: flex; 
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
+      nav.dvfa-ms-tabs, nav.dvfa-ss-tabs {
+        width:100%;
+        float: left;
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
         -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
         justify-content: space-between;
-        -webkit-align-content: space-between;
-        -ms-flex-line-pack: justify;
-        align-content: space-between;
-        -webkit-align-items: stretch;
-        -ms-align-items: stretch;
-        align-items: stretch;
+        -webkit-align-items: stretch; 
+        align-items: stretch; 
       }
       .dvfa-option {
         width:100%;
-        margin-bottom:10px;
-        position:relative;
-        color:#000000;
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: stretch; 
+        align-items: stretch; 
       }
 
       .no-touch .dvfa-option:hover {
@@ -50,6 +58,7 @@
 
       .dvfa-option label {
         width:100%;  /*label should fill container so the whole row is clickable */
+        color:#000000;
         text-align:center;
         font-size:1.25em;
         background-color:#fff;
@@ -77,40 +86,8 @@
         box-shadow:0px 0px 4px rgba(0,0,0,.4);*/
       }
 
-      .dvfa-checkbox {
-        display:inline-block;
-        background-color:#ffffff;
-        border-right:1px solid #000000;
-        position:absolute;
-        min-height:100%;
-        min-width:15%;
-        text-align:center;
-      }
 
-      .dvfa-checkbox span { 
-        color: #006b8e;
-        font-size: 5em;
-        display: inline-block;
-        margin-top: -.45em;
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index:5;
-      }
-
-      .dvfa-checkbox .dvfa-hit {
-        position: absolute;
-        left: 0;
-        right: 0;
-        z-index: 5;
-        min-height: 100%;
-      }
-
-      .dvfa-checkbox .dvfa-hit:hover {
-        cursor:pointer;
-      }
-
-      input[type=checkbox] {
+      input[type=checkbox], input[type=radio] {
         /* hidden input still accessible to screen readers */
         position: absolute !important;
         clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
@@ -129,27 +106,47 @@
     </style>
 
 
+    <h1>Tabs<br /></h1>
 
-
-    <nav id="dvfa-group-1" class="dvfa-ms-tabs" data-limit="1">
-          <div class="dvfa-option">
-            <input type="checkbox" id="c1" name="cc"/>
-            <label for="c1">Option 1</label>
-          </div>
-          <div class="dvfa-option">
-            <input type="checkbox" id="c2" name="cc"/>
-            <label for="c2">Option 2</label>
-          </div>
-          <div class="dvfa-option">
-            <input type="checkbox" id="c3" name="cc"/>
-            <label for="c3">Option 3</label>
-          </div>
-          <div class="dvfa-option">
-            <input type="checkbox" id="c4" name="cc"/>
-            <label for="c4">Optionoptionoption 4</label>
-          </div>
+    <h2>Multi-select tabs</h2>
+    <nav id="dvfa-group-1" class="dvfa-ms-tabs">
+      <div class="dvfa-option">
+        <input type="checkbox" id="ms1" name="ms1" checked/>
+        <label for="ms1">Irrigation</label>
+      </div>
+      <div class="dvfa-option">
+        <input type="checkbox" id="ms2" name="ms2"/>
+        <label for="ms2">Water Supply</label>
+      </div>
+      <div class="dvfa-option">
+        <input type="checkbox" id="ms3" name="ms3"/>
+        <label for="ms3">Recreation</label>
+      </div>
+      <div class="dvfa-option">
+        <input type="checkbox" id="ms4" name="ms4"/>
+        <label for="ms4">Storm Water Management</label>
+      </div>
     </nav>
 
+    <h2>Single-select tabs</h2>
+    <nav id="dvfa-group-2" class="dvfa-ss-tabs">
+      <div class="dvfa-option">
+        <input type="radio" id="ss1" name="group" checked/>
+        <label for="ss1" tabindex="0">Irrigation</label>
+      </div>
+      <div class="dvfa-option">
+        <input type="radio" id="ss2" name="group"/>
+        <label for="ss2" tabindex="0">Water Supply</label>
+      </div>
+      <div class="dvfa-option">
+        <input type="radio" id="ss3" name="group"/>
+        <label for="ss3" tabindex="0">Recreation</label>
+      </div>
+      <div class="dvfa-option">
+        <input type="radio" id="ss4" name="group"/>
+        <label for="ss4" tabindex="0">Storm Water Management</label>
+      </div>
+    </nav>
 
 
 
