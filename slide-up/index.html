@@ -2312,6 +2312,13 @@
 
     //tooltip hover functions
     var displayName = function(){
+      if ($("#tooltip").hasClass('expanded')) {
+        $("#hed").unbind("click");
+        $("#hed").click(minimize);
+      } else {
+        $("#hed").unbind("click");
+        $("#hed").click(displayExpanded);
+      }
       var county = $(this);
       var tooltipData = {approved : county.attr('data-approved'), pending : county.attr('data-pending'), population : county.attr('data-pop')};
       $("#tooltip").addClass('hed');
@@ -2322,11 +2329,13 @@
     var displayExpanded = function() {
       $("#tooltip").addClass("expanded");
       // $("#expanded").text("WHOOOOHHOOOOO TOOLTIPS!");
+      $("#hed").unbind("click");
       $("#hed").click(minimize);
     };
 
     var minimize = function() {
       $("#tooltip").removeClass("expanded");
+      $("#hed").unbind("click");
       $("#hed").click(displayExpanded);
     };
 
@@ -2334,7 +2343,7 @@
 
     //attach hover functions
     $(".cir-county").click(displayName);
-    $("#hed").click(displayExpanded);
+    
     $("svg:not(.cir-county)").click(function(e){
       if (e.target !== this) {
         return;
