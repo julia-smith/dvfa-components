@@ -2330,7 +2330,7 @@
     //tooltip hover functions
     var displayName = function(){
       var $tooltip = $('#tooltip');
-      $tooltip.find('#hed').attr('tabindex', -1).trigger('focus');
+      $tooltip.find('#hed').attr('tabindex', 0);//.trigger('focus');
       if ($tooltip.hasClass('expanded')) {
         $("#hed").unbind("click");
         $("#hed").click(minimize);

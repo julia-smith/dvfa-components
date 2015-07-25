@@ -3,8 +3,7 @@ Workspace for developing individual components for accessible and mobile-friendl
 
 ##Quickstart
 
-        cd slide-up
-        python -m SimpleHTTPServer 8000
+    python -m SimpleHTTPServer 8000
 
 
 
