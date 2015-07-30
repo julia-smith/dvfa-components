@@ -126,9 +126,11 @@ function initInteraction(mapid, elementclass){
         });*/
 
         elem.addEventListener( 'click', function(e) {
+          e.preventDefault();
           if(e.handled !== true) {
             var path = e.target;
-            manageSelectedPath(path);
+            $(path).focus();
+            
             e.handled = true;
           }
         });
@@ -172,27 +174,11 @@ function updateSelectionInfo(value){
     info.innerHTML = html;
     updateSelectedPath(svgCounty);   
     //trigger click event here to fire panel functions
-    displayName(svgCounty);
+    $(svgCounty).focus();
   } else {
     info.innerHTML = "";
     deselectPath();
   }
-}
-
-function manageSelectedPath(path){
-  var select = document.getElementById("cir-map-select");   
-  var newValue = path.id;
-  if (path.getAttribute('data-selected') == 'true'){
-    select.value = "Select a county";
-    newValue = "Select a county"; 
-    hidePanel();
-    path.blur();
-  } else {
-    select.value = newValue;
-    path.focus();
-    updateSelectedPath(path);
-  }
-  updateSelectionInfo(newValue);
 }
 
 function updateSelectedPath(path){
@@ -203,8 +189,12 @@ function updateSelectedPath(path){
     path.setAttribute('data-selected', 'true');
   } 
   path.setAttribute('data-selected', 'true');
-  var parent = path.parentNode;
-  parent.appendChild(path);
+
+  /* The below would allow you to put a nice stroke along the selected path; */
+  /* however, it's problematic for keyboard navigation through the map.      */
+
+  //var parent = path.parentNode;
+  //parent.appendChild(path);
 }
 
 function deselectPath(){
@@ -228,14 +218,18 @@ function panelInfo(elem){
               '</td></tr><tr><td>Pending Permits</td><td>' + 
               pending.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 
               '</td></tr></tbody></table></div>';
+      html += '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.s</p>'
       
   return html;
 }
 
 function displayName(elem) {
   var county = $(elem);
+  var hed = $('.panel-hed');
 
-  $('.panel-hed').html('<span>' + county.attr('data-name') + ' County</span>');
+  hed.html('<span>' + county.attr('data-name') + ' County</span>');
+  //var hedHeight = hed.outerHeight();
+
   $('.info-panel').addClass('topper');
   $('.panel-expanded').html(panelInfo(elem));
 }
@@ -275,11 +269,13 @@ function expandPanel(elem) {
     $parent.removeAttr('style');
     $expanded.removeAttr('style');
     $expanded.blur();
+    $(lastFocused).focus();
   }
 }
 
 function hidePanel(){
   $('.info-panel').removeClass('topper').removeClass('expanded').removeAttr('style');
+  $(lastFocused).focus();
 }
 
 $('.panel-hed').click(function(){
@@ -297,6 +293,7 @@ $('.cir-county').focus(function(){
   lastFocused = this;
 });
 
+
 /* Expand (slide up) the panel with the 'enter' key on a selected path */
 $('.cir-county').keydown(function(e){ 
   var code = e.which;
@@ -304,29 +301,34 @@ $('.cir-county').keydown(function(e){
   if (code === 13) {
     var panel = $('.panel-hed');
     expandPanel(panel);
+    $(e.target).unbind('keydown');
   }
 });
 
 /* Remove focus from the expanded panel to return focus to the previous path selection */
 $('.panel-expanded').keydown(function(e){ 
-  var code = e.which;
+  var code = (e.keyCode ? e.keyCode : e.which);
   // 13 = Return
   if (code === 13) {
     var panel = $('.panel-hed');
     hidePanel(panel);
-    $(lastFocused).focus();
   }
 });
+
 
 $('#map-container:not(.cir-county), svg:not(.cir-county)').click(function(e){
   if (e.target !== this) {
     return;
   }
 
-  hidePanel();
+  $('.info-panel').removeClass('topper').removeClass('expanded').removeAttr('style');
 
   $('#cir-map-select').val("Select a county");
   var info = document.getElementById("cir-map-info");
   info.innerHTML = "";
   deselectPath();
+});
+
+$('body').keydown(function(e){ 
+  var active = document.activeElement;
 });
