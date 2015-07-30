@@ -501,9 +501,6 @@ p.credit {
 
 /* Panel Styles */
 .info-panel {
-  transition-property: top;
-  transition-duration: .5s;
-  transition-timing-function: ease-out;
   position: absolute;
   width: 100%;
   top: 100%;
@@ -513,7 +510,7 @@ p.credit {
 
 .info-panel.topper {
   transition-property: top;
-  transition-duration: .25s;
+  transition-duration: .15s;
   transition-timing-function: ease-out;
   opacity: 100;
   top: 88%;
@@ -522,7 +519,7 @@ p.credit {
 
 .info-panel.expanded {
   transition-property: top;
-  transition-duration: .5s;
+  transition-duration: .25s;
   transition-timing-function: ease-out;
   opacity: 100;
   display: block;

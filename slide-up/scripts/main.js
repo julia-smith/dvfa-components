@@ -286,6 +286,7 @@ $('.panel-hed').click(function(){
   expandPanel(this);  
 });
 
+/* Display the top-level information for the selection on focus */
 var lastFocused = $('.cir-county')[0];
 $('.cir-county').focus(function(){
   deselectPath(); 
@@ -296,6 +297,7 @@ $('.cir-county').focus(function(){
   lastFocused = this;
 });
 
+/* Expand (slide up) the panel with the 'enter' key on a selected path */
 $('.cir-county').keydown(function(e){ 
   var code = e.which;
   // 13 = Return
@@ -305,6 +307,7 @@ $('.cir-county').keydown(function(e){
   }
 });
 
+/* Remove focus from the expanded panel to return focus to the previous path selection */
 $('.panel-expanded').keydown(function(e){ 
   var code = e.which;
   // 13 = Return
