@@ -1,121 +1,59 @@
-<! doctype html>
-<head>
-  <meta name="viewport" content="width=device-width">
-  <style>
-    #wrapper {
-      position: relative;
-      width: 300px;
-      height: 400px;
-      /*border: 1px solid black;*/
-      overflow: hidden;
-    }
-    #map-wrap {
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="permits">
+    <meta property="og:description" content="">
+
+    <title>Sliding Info Box</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="//use.typekit.net/ofs8bkz.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+
+    <!--[if lt IE 9]>
+      <style>
+            .county-selection-wrapper, #interactive-wrapper, .cir-map-legend, .credit {display:none;}
+            .compatibility-error {display:block;}
+      </style>
+    <![endif]-->
+    <noscript>
+      <style>
+            .county-selection-wrapper, #interactive-wrapper, .cir-map-legend, .credit {display:none;}
+            .compatibility-error {display:block;}
+      </style>
+    </noscript>
+
+    </head>
+  <body>
+
+  <h1 class="wcag-hide">Active Permits Map</h1>
+  <div class="county-selection-wrapper">
+      <label for="cir-map-select" class="wcag-hide">Select a county: </label>
+      <select id="cir-map-select" name="cir-map-select">
+            <option>Select a county</option>
+            <option value="_x30_01_Alameda">Alameda</option><option value="_x30_03_Alpine">Alpine</option><option value="_x30_05_Amador">Amador</option><option value="_x30_07_Butte">Butte</option><option value="_x30_09_Calaveras">Calaveras</option><option value="_x30_11_Colusa">Colusa</option><option value="_x30_13_Contra_Costa">Contra Costa</option><option value="_x30_15_Del_Norte">Del Norte</option><option value="_x30_17_El_Dorado">El Dorado</option><option value="_x30_19_Fresno">Fresno</option><option value="_x30_21_Glenn">Glenn</option><option value="_x30_23_Humboldt">Humboldt</option><option value="_x30_25_Imperial">Imperial</option><option value="_x30_27_Inyo">Inyo</option><option value="_x30_29_Kern">Kern</option><option value="_x30_31_Kings">Kings</option><option value="_x30_33_Lake">Lake</option><option value="_x30_35_Lassen">Lassen</option><option value="_x30_37_Los_Angeles">Los Angeles</option><option value="_x30_39_Madera">Madera</option><option value="_x30_41_Marin">Marin</option><option value="_x30_43_Mariposa">Mariposa</option><option value="_x30_45_Mendocino">Mendocino</option><option value="_x30_47_Merced">Merced</option><option value="_x30_49_Modoc">Modoc</option><option value="_x30_51_Mono">Mono</option><option value="_x30_53_Monterey">Monterey</option><option value="_x30_55_Napa">Napa</option><option value="_x30_57_Nevada">Nevada</option><option value="_x30_59_Orange">Orange</option><option value="_x30_61_Placer">Placer</option><option value="_x30_63_Plumas">Plumas</option><option value="_x30_65_Riverside">Riverside</option><option value="_x30_67_Sacramento">Sacramento</option><option value="_x30_69_San_Benito">San Benito</option><option value="_x30_71_San_Bernardino">San Bernardino</option><option value="_x30_73_San_Diego">San Diego</option><option value="_x30_75_San_Francisco">San Francisco</option><option value="_x30_77_San_Joaquin">San Joaquin</option><option value="_x30_79_San_Luis_Obispo">San Luis Obispo</option><option value="_x30_81_San_Mateo">San Mateo</option><option value="_x30_83_Santa_Barbara">Santa Barbara</option><option value="_x30_85_Santa_Clara">Santa Clara</option><option value="_x30_87_Santa_Cruz">Santa Cruz</option><option value="_x30_89_Shasta">Shasta</option><option value="_x30_91_Sierra">Sierra</option><option value="_x30_93_Siskiyou">Siskiyou</option><option value="_x30_95_Solano">Solano</option><option value="_x30_97_Sonoma">Sonoma</option><option value="_x30_99_Stanislaus">Stanislaus</option><option value="_x31_01_Sutter">Sutter</option><option value="_x31_03_Tehama">Tehama</option><option value="_x31_05_Trinity">Trinity</option><option value="_x31_07_Tulare">Tulare</option><option value="_x31_09_Tuolumne">Tuolumne</option><option value="_x31_11_Ventura">Ventura</option><option value="_x31_13_Yolo">Yolo</option><option value="_x31_15_Yuba">Yuba</option>
+      </select>
+      <div id="cir-map-info"></div>
+  </div>
+
+    <div id="interactive-wrapper">
+    <!--<h3>California's concealed gun permits</h3>
+    <p>As of Dec. 31, 2014, California had 70,593 residents with an active concealed carry permit. <strong>How many concealed gun permits are in your county?</strong></p>-->
       
-      width : 100%;
-      height : 100%;
+    <div class="interactive-wrapper-inner">
+    <div id="map-container">
 
-    }
-    svg:focus {
-      outline:none;
-    }
-    .box {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border: 1px solid black;
-    }
-    #blue {
-      top: 15;
-      left: 30;
-      background-color: blue;
-    }
-    #red {
-      top: 50;
-      left: 70;
-      background-color: red;
-    }
-    #green {
-      top: 80;
-      left: 150;
-      background-color: green;
-    }
-    #tooltip {
-      transition-property: top;
-      transition-duration: .5s;
-      transition-timing-function: ease-out;
-      position: absolute;
-      width: 100%;
-      top: 100%;
-      height: 15%;
-      background-color: white;
-    }
-
-    #tooltip.hed {
-      transition-property: top;
-      transition-duration: .25s;
-      transition-timing-function: ease-out;
-      opacity: 100;
-      top: 85%;
-      height: 15%;
-
-    }
-
-    #tooltip.expanded {
-      transition-property: top;
-      transition-duration: .5s;
-      transition-timing-function: ease-out;
-      opacity: 100;
-      display: block;
-      top: 65%;
-    }
+      
+      <div id="map-canvas">
 
 
-    #hed {
-      top:0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #dcdee5;
-      text-align: center;
-      font-size: 2em;
-      /*border-top: 1px solid black;
-      border-bottom: 1px solid black;*/
-    }
 
-    #hed:focus {
-      outline:none;
-      background-color:#ccc;
-    }
-
-    #expanded {
-      background-color: white;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      top: 97%;
-      right: 0;
-    }
-    #expanded:focus {
-      outline:none;
-      background-color:#f5f5f5;
-    }
-
-    @media only screen and (max-width: 660px){ 
-      #wrapper {
-        width: 100%;
-        height: 100%;
-      }
-    } 
-  </style>
-
-  <script src = '../common/jquery-1.11.2.min.js'></script>
-  <script src = '../common/underscore-min.js'></script>
-
-</head>
-<body>
-  <div id = 'wrapper'>
-    <div id = 'map-wrap'>
-<svg version="1.1" id="Map_of_the_counties_of_California_x2C__without_legend" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xapgimg="http://ns.adobe.com/xap/1.0/g/img/" xmlns:cc="http://web.resource.org/cc/" xmlns:ns="http://ns.adobe.com/Variables/1.0/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xap="http://ns.adobe.com/xap/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns0="http://ns.adobe.com/SaveForWeb/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" sodipodi:docbase="d:\Home\Wikipedia" sodipodi:docname="California county map.svg" inkscape:version="0.44" sodipodi:version="0.32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 620.843 733.026" enable-background="new 0 0 620.843 733.026" xml:space="preserve" aria-labelledby="title" aria-describedby="desc"  tabindex="0">
+<svg version="1.1" id="Map_of_the_counties_of_California_x2C__without_legend" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xapgimg="http://ns.adobe.com/xap/1.0/g/img/" xmlns:cc="http://web.resource.org/cc/" xmlns:ns="http://ns.adobe.com/Variables/1.0/" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:xap="http://ns.adobe.com/xap/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:ns0="http://ns.adobe.com/SaveForWeb/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" sodipodi:docbase="d:\Home\Wikipedia" sodipodi:docname="California county map.svg" inkscape:version="0.44" sodipodi:version="0.32" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 620.843 733.026" enable-background="new 0 0 620.843 733.026" xml:space="preserve" aria-labelledby="title" aria-describedby="desc" role="img">
 <title>California's concealed guns</title>
 <desc>A choropleth map of California's concealed carry permits, colored by the number of active permits in each county.</desc>
 <switch>
@@ -2298,94 +2236,74 @@
     <polygon id="_x30_31_Kings" fill="#c5e9e5" stroke="#666" stroke-miterlimit="1" points="281.586,484.949 282.063,447.961 285.232,447.938 
       285.361,437.587 281.807,437.708 282.057,430.913 279.389,431.183 273.529,436.253 272.614,435.686 268.508,436.733 
       268.34,437.575 255.674,437.639 255.677,454.678 233.706,475.732 236.108,475.906 238.187,477.766 238.473,478.889 
-      237.163,480.041 237.637,481.902 239.324,482.227 239.986,484.826     " data-name="Kings" data-approved="838" data-pending="188" data-pop="150269" class="cir-county"></polygon>
+      237.163,480.041 237.637,481.902 239.324,482.227 239.986,484.826" data-name="Kings" data-approved="838" data-pending="188" data-pop="150269" class="cir-county"></polygon>
   </g>
 </switch>
 </svg>
 
-
-    </div>
-    <div id="tooltip">
-      <div id="hed" tabindex="-1">
-        <span></span>
+      <div class="map-tooltip">
+        <div class="tooltip-inner"></div>
       </div>
-      <div id="expanded"></div>
-    </div>
-  </div>
-    <script>
 
+
+      </div> <!-- map canvas -->
+
+      
+      <div class="info-panel">        
+        <div class="panel-hed"></div>
+        <div class="panel-expanded"></div>
+      </div>
+
+
+    </div>  <!-- map-container -->
+
+  </div> <!-- interactive-wrapper-inner -->
+
+
+  </div><!-- interactive wrapper -->
+  <div class="cir-map-legend">
+      <div class="legend-bar-container">
+          <div class="legend-bar-text">2</div>
+          <div class="legend-bar"></div>
+          <div class="legend-bar-text">7,647</div>
+      </div>
+      <div class="legend-title">Active permits</div>
+</div>
+
+
+
+  <!--<p class="credit"> <span class="media-credit">Credit: Julia Smith/Reveal</span><br><span class="media-credit">Source: California Department of Justice's Bureau of Firearms</span> </p>-->
+
+
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+  <script src="../common/jquery-2.1.4.min.js"></script>
+  <script src="../common/tinysort.min.js"></script>
+  <script>
     $(document).ready(function(){
+      /* Sort SVG paths so they're listed in alphabetical order */
+      var paths = document.querySelectorAll(".cir-county");
+      tinysort(paths,{attr:"data-name"}); 
+      
+      /* Add tabindexes to paths so the keyboard can access them */
       $('.cir-county').attr('tabindex', 0);
-    });
 
-    //tooltip template
-
-    var buildTooltip = _.template(
-      "<ul>\
-        <li>Approved Permits: <%= approved %></li>\
-        <li>Pending Permits: <%= pending %></li>\
-        <li>Population: <%= population %></li>\
-      </ul>");
-
-    //tooltip hover functions
-    var displayName = function(){
-      var $tooltip = $('#tooltip');
-      $tooltip.find('#hed').attr('tabindex', 0);//.trigger('focus');
-      if ($tooltip.hasClass('expanded')) {
-        $("#hed").unbind("click");
-        $("#hed").click(minimize);
-      } else {
-        $("#hed").unbind("click");
-        $("#hed").click(displayExpanded);
-      }
-      var county = $(this);
-      var tooltipData = {approved : county.attr('data-approved'), pending : county.attr('data-pending'), population : county.attr('data-pop')};
-      $tooltip.addClass('hed');
-      $('#hed span').text(county.attr('data-name'));
-      $("#expanded").html(buildTooltip(tooltipData));
-    };
-
-    var displayExpanded = function() {
-      $("#tooltip").addClass("expanded");
-      // $("#expanded").text("WHOOOOHHOOOOO TOOLTIPS!");
-      $("#hed").unbind("click");
-      $("#hed").click(minimize);
-    };
-
-    var minimize = function() {
-      $("#tooltip").removeClass("expanded");
-      $("#hed").unbind("click");
-      $("#hed").click(displayExpanded);
-    };
-
-    $('#tooltip').keydown(function(e){ 
-      var code = e.which;
-      // 13 = Return, 32 = Space
-      if ((code === 13) || (code === 32)) {
-        $(this).find('#hed').trigger('click');
-        $(this).find('#expanded').attr('tabindex', -1).trigger('focus');
-      }
-    });
-    $('.cir-county').keydown(function(e){ 
-      var code = e.which;
-      // 13 = Return, 32 = Space
-      if ((code === 13) || (code === 32)) {
-        $(this).trigger('click');
-      }
-    });
-
-    
-
-    //attach hover functions
-    $(".cir-county").click(displayName);
-    
-    $("svg:not(.cir-county)").click(function(e){
-      if (e.target !== this) {
-        return;
-      }
-      $("#tooltip").removeClass("hed").removeClass("expanded");
     });
     
-
   </script>
-</body>
+
+
+  <script>
+    var mapid = "Map_of_the_counties_of_California_x2C__without_legend";
+    var elementclass = "cir-county";
+  </script>
+   
+  <script src="scripts/main.js"></script>
+
+
+
+    
+
+
+      <div class="compatibility-error">This interactive feature requires a modern browser with JavaScript enabled.</div>
+  </body>
+</html>

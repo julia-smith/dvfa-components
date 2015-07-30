@@ -1,0 +1,581 @@
+/* Start styles borrowed from http://www.revealnews.org/wp-content/themes/reveal2015/static/stylesheets/app.min.css?ver=0.5.2 */
+svg:not(:root) { overflow: hidden; max-height:100%;}
+select { font-family: inherit; font-size: 100%; margin: 0px; }
+select { text-transform: none; }
+html { font-family: sans-serif; }
+body,html { height: 100%; }
+*,*::after,*::before { box-sizing: border-box; }
+body, html{ font-size: 22px; }
+body { color: #222; padding: 0px; margin: 0px; font-family: ff-meta-serif-web-pro,Georgia,Times,"Times New Roman",serif; font-weight: 400; font-style: normal; line-height: 1.4; position: static; cursor: auto; }
+div,h2,h1,h2,h3,h4,h5,h6,p { margin: 0px; padding: 0px; }
+p { font-family: inherit; font-weight: 400; font-size: inherit; line-height: 1.4; margin-bottom: 1.25em; text-rendering: optimizelegibility; }
+h1,h2,h3,h4,h5,h6 { font-family: ff-meta-serif-web-pro,Georgia,Times,"Times New Roman",serif; font-weight: 700; font-style: normal; color: #222; text-rendering: optimizelegibility; margin-top: 0.2rem; margin-bottom: 0.5rem; line-height: 1.3; }
+h2 { font-size: 0.90909rem; }
+h1,h2,h3,h4,h5,h6 { line-height: 1.3; }
+h1 { font-size: 2.45455rem; }
+h2 { font-size: 1.36364rem; }
+h3 { font-size: 1rem; }
+h4 { font-size: 0.81818rem; }
+h5 { font-size: 0.72727rem; }
+h6 { font-size: 1rem; }
+label { font-size: 0.81818rem; color: #666; cursor: pointer; display: block; font-weight: 400; line-height: 1.5; margin-bottom: 0px; }
+select { 
+  background-color: #fafafa; 
+  -webkit-appearance: none!important;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);
+  background-position: 100% center; background-repeat: no-repeat; border-style: solid; border-width: 1px; border-color: #ccc; padding: 0.36364rem; font-size: 0.63636rem; font-family: ff-meta-serif-web-pro,Georgia,Times,"Times New Roman",serif; color: rgba(0, 0, 0, 0.75); line-height: normal; border-radius: 0px; height: 1.68182rem; }
+input[type="checkbox"],input[type="file"],input[type="radio"],select { margin: 0px 0px 0.72727rem; }
+body { background: rgb(233, 233, 233) none repeat scroll 0% 0%; z-index: 1; }
+@media only screen and (max-width: 40em) {
+  body,html { font-size: 20px; }
+}
+h2,h3,h4,h5,h6 { font-family: lato,Helvetica,sans-serif; font-weight: 900; }
+.article { font-size: 21px; }
+.article h2 { margin-top: 1.5em; text-transform: none; font-family: ff-meta-serif-web-pro,Georgia,Times,"Times New Roman",serif; }
+table { border-collapse: collapse }
+table tr td,table tr th { padding:.40909rem .45455rem;font-size:.63636rem;color:#222;text-align:left }
+table tr.alt,table tr.even,table tr:nth-of-type(even){ background:#F9F9F9 }
+/* End styles from http://www.revealnews.org/wp-content/themes/reveal2015/static/stylesheets/app.min.css?ver=0.5.2 */
+
+/** START DEFAULT STYLES **/
+* {
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+body {
+  background: white;
+  font-size: 16px;
+  color: rgb(34, 34, 34);
+  padding: 0;
+  margin: 0;
+  font-family: "ff-meta-serif-web-pro", Georgia, serif;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  position: relative;
+  cursor: default;
+}
+
+.container { position: relative; }
+
+.note {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.hed {
+  font-family: 'Lato', Helvetica,sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.small {
+  font-family: 'Lato', Helvetica, sans-serif;
+  color: #888;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.webtweet {
+  display: block;
+  margin-bottom: 10px;
+}
+.webtweet::after {
+    content: url(https://s3.amazonaws.com/uploads-cironline-org/scripts/twitter-web-intents/Twitter_logo_blue_16.png)
+  }
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+/** END DEFAULT STYLES **/
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#interactive-wrapper {
+  border-bottom:1px solid #ccc;
+}
+.interactive-wrapper-inner{  
+  position: relative;
+  margin: 0 auto;
+}
+#map-container {
+  width:100%;
+  position:relative;
+  overflow: hidden;
+}
+
+.cir-map-legend {
+  position:static;
+  margin:0 0 1em 0;
+  padding:1em 0 .5em;
+  min-height: 60px;
+  font-size: .9em;
+  background-color:rgba(200,200,200,.25);
+  width:100%;
+  text-align:center;
+  border-radius:2px;
+}
+.legend-bar-container {
+  text-align:center;
+}
+.legend-title {
+  color:#222222;
+  font-weight:bold;
+  margin-bottom:0;
+  font-size:.8em;
+}
+
+.legend-row {
+  overflow: visible;
+  width: 100%;
+  padding-bottom: 4px;
+}
+.legend-bar {
+  width:50%;
+  height:12px;
+  float:none;
+  display:inline-block;
+  border:1px solid #666666;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(left,  #ffffff 0%, #7bccc4 25%, #4eb3d3 50%, #2b8cbe 75%, #073763 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(25%,#7bccc4), color-stop(50%,#4eb3d3), color-stop(75%,#2b8cbe), color-stop(100%,#073763)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #ffffff 0%,#7bccc4 25%,#4eb3d3 50%,#2b8cbe 75%,#073763 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #ffffff 0%,#7bccc4 25%,#4eb3d3 50%,#2b8cbe 75%,#073763 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #ffffff 0%,#7bccc4 25%,#4eb3d3 50%,#2b8cbe 75%,#073763 100%); /* IE10+ */
+  background: linear-gradient(to right,  #ffffff 0%,#7bccc4 25%,#4eb3d3 50%,#2b8cbe 75%,#073763 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#073763',GradientType=1 ); /* IE6-9 */
+
+}
+.legend-bar-text {
+  font-family: lato, sans-serif;
+  font-size: .9em;
+  min-height: 20px;
+  float:none;
+  display:inline-block;
+  width:20%;
+  text-align:right;
+  padding-right:6px;
+}
+.legend-bar-text:last-of-type {
+  text-align:left;
+  padding-left:6px;
+  padding-right:0;
+}
+.legend-text {
+  font-family: lato, sans-serif;
+  font-size: .8em;
+  padding: 1px 6px;
+  min-height: 20px;
+  display: inline-block;
+}
+
+.map-tooltip {
+  /*width:160px;*/
+  max-width:220px;
+  position:absolute;
+  display:none;
+  border-radius:4px;
+  border:1px solid #bbbbbb;
+  -moz-box-shadow:0px 0px 2px rgba(102,102,102,.6);
+  -webkit-box-shadow:0px 0px 2px rgba(102,102,102,.6);
+  box-shadow:0px 0px 2px rgba(102,102,102,.6);
+  background-color:#ffffff;
+  color:#222222;
+  padding:10px;
+  font-size:.8em;
+  z-index:3;
+}
+
+.touch-device .map-tooltip {
+  display:none;
+  visibility:hidden;
+}
+
+.tooltip-inner span, #cir-map-info span{
+  display:block;
+  text-align:center;
+}
+
+#map-canvas{
+  margin: 0;
+  padding: 1em 0;
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+  position:relative;
+}
+.info-window table {
+  border-collapse: collapse;
+  font-size:1.25em;
+  width:100%;
+  border-collapse: collapse;
+  border: none;
+  margin-bottom: 0
+}
+
+.info-window table tr:nth-of-type(even) {
+  background: #FFF;
+}
+.info-window td {
+  padding-left:0;
+  padding-right:0;
+}
+.info-window td:first-child { 
+  font-family:Lato, sans-serif;
+  color:#777;
+  font-size:.8em;
+  text-transform:uppercase;
+  vertical-align: bottom;
+}
+.info-window td:last-child { 
+  font-family:"lato",sans-serif;
+  font-size:1em;
+  text-align:right;
+  padding-left:1em;
+}
+.info-window tr:first-of-type td { 
+  font-family: "ff-meta-serif-web-pro",Georgia,Times,"Times New Roman",serif;
+  font-weight:bold;
+  font-size:1.2em;
+  text-transform: none;
+  text-align:left;
+  padding:.25em 0;
+  color:#222222;
+}
+.info-window tr:last-of-type td{
+  border-top:1px solid #ccc;
+}
+.gm-style-mtc {
+  display: none;
+}
+
+.county-selection-wrapper {
+  border-bottom:2px solid #ccc;
+  padding:1em 0;
+  width:100%;
+}
+
+#cir-map-select {
+  width:40%;
+  display:inline-block;
+  margin:0;
+}
+
+#cir-map-select:focus {
+  outline-width: 1px;
+  outline-color: #f38c21;
+}
+#cir-map-info {
+  width:55%;
+  display:inline-block;
+  padding-left:1em;
+  display:none;/* don't need it for sliding info box demo */
+}
+#cir-map-info span {
+  text-align:left;
+  font-size:1.25em;
+  font-weight:bold;
+}
+
+.cir-county[data-selected="true"] {
+  stroke-width:3;
+  stroke:#222222;
+}
+
+.cir-county:hover {
+  /*fill-opacity:.75;*/
+  cursor:pointer;
+}
+
+.wcag-hide {
+  position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+
+#tabular-permits table {
+  font-size:.9em;
+}
+
+#permit-table {
+  width:100%;
+  border-collapse: collapse;
+  border:none;
+}
+
+#permit-table thead {
+  background-color:#fff;
+}
+
+#permit-table th, #permit-table td {
+  text-align:center;
+  color:inherit;
+}
+
+#permit-table th:first-of-type {
+  padding:.5em;
+  text-align:left;
+}
+
+#permit-table thead th {
+  border-bottom:2px solid #ccc;
+  display:none;
+}
+#permit-table th:hover, #permit-table-headers th:hover, #permit-table th:focus, #permit-table-headers th:focus {
+  cursor:pointer;
+  color:#d5710c;
+  outline:none;
+}
+
+#permit-table thead span {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid #222;
+  border-bottom: 5px solid #222;
+  margin-top: 0;
+  margin-left:8px;
+  display: inline-block;
+}
+#permit-table .descend, #permit-table .ascend {
+  color:#f38c21;
+}
+#permit-table .descend span{
+  border-bottom: 5px solid #222;
+  border-top:none;
+  margin-top: 4px;
+}
+
+#permit-table .ascend span {
+  border-top: 5px solid #222;
+  border-bottom: none;
+  margin-top: 4px;
+}
+
+#permit-table tbody span {
+  background-color: rgba(255,255,255,.5);
+  padding: 4px;
+  border-radius: 2px;
+}
+
+#permit-table td {
+  border:1px solid #cccccc;
+  border-left:0;
+  border-right:0;
+  padding:.5em;
+}
+#permit-table tbody tr:last-of-type td {
+  border-bottom:none;
+}
+#permit-table td {
+  font-family:'Lato', sans-serif;
+  background-color:#fff;
+  width:25%;
+}
+#permit-table tbody td:nth-child(1) {
+  font-family:"ff-meta-serif-web-pro", Georgia, serif;
+  text-align:left;
+  font-weight:bold;
+  padding-left: 0;
+  width: 22%;
+}
+
+#tabular-permits section {
+  position: absolute;
+  width:100%;
+}
+
+#tabular-permits #table-container {  
+  overflow-y: auto;
+  height: 290px;
+  max-height:290px;
+  width:100%;
+  position: relative;
+  margin-top: 27px;
+  border-bottom:1px solid #ccc;
+}
+
+#permit-table-headers {
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background-color:#fff;
+  border-bottom:2px solid #ccc;
+  z-index:3;
+  border-collapse:collapse;
+}
+
+#permit-table-headers th {
+  width:25%;
+  padding: .5em;
+  text-align:center;
+}
+#permit-table-headers th:first-of-type {
+  text-align:left;
+  padding-left: 0;
+  width:22%;
+}
+
+#permit-table-headers thead span {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 5px solid #222;
+  border-bottom: 5px solid #222;
+  margin-top: 0;
+  margin-left:8px;
+  display: inline-block;
+}
+#permit-table-headers .descend, #permit-table-headers .ascend {
+  color:#f38c21;
+}
+#permit-table-headers .descend span{
+  border-bottom: 5px solid #222;
+  border-top:none;
+  margin-bottom: 2px;
+}
+
+#permit-table-headers .ascend span {
+  border-top: 5px solid #222;
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+
+
+@media only screen and (max-width: 660px) { 
+  #tabular-permits #table-container {
+    margin-top: 25px;
+  }
+  #tabular-permits table {
+    font-size:.75em;
+  }  
+  #cir-map-info span {
+    font-size:1em;
+  }
+}
+
+@media only screen and (max-width: 500px) { 
+  #tabular-permits #table-container {
+    margin-top: 44px;
+  }
+  #tabular-permits th {
+    font-size:1.25em;
+  }
+  #tabular-permits th span {
+    display:none;
+  }
+  #cir-map-info span {
+    font-size:.8em;
+  }
+}
+
+
+p.credit {
+  margin-top:1em;
+  color: #777;
+  font-size: .75em;
+  text-align: right;
+  font-family: Lato,sans-serif;
+}
+
+.compatibility-error {
+  display:none;
+}
+
+
+/* Panel Styles */
+.info-panel {
+  transition-property: top;
+  transition-duration: .5s;
+  transition-timing-function: ease-out;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  height: 15%;
+  background-color: white;
+}
+
+.info-panel.topper {
+  transition-property: top;
+  transition-duration: .25s;
+  transition-timing-function: ease-out;
+  opacity: 100;
+  top: 88%;
+  height: 35%;
+}
+
+.info-panel.expanded {
+  transition-property: top;
+  transition-duration: .5s;
+  transition-timing-function: ease-out;
+  opacity: 100;
+  display: block;
+  top: 65%;
+}
+
+
+.panel-hed {
+  top:0;
+  left: 0;
+  width: 100%;
+  padding:.75em;
+  background-color: #444444;
+  color:#fff;
+  font-size: 1.5em;
+}
+
+.panel-hed:focus {
+  outline:none;
+  background-color:#222222;
+}
+
+.panel-expanded {
+  background-color: #fff;
+  width: 100%;
+  position: absolute;
+  padding:0 1em 1em;
+}
+.panel-expanded:focus {
+  outline:none;
+  background-color:#f5f5f5;
+}
+
+/* =================
+   MEDIA QUERIES
+   Taken from: http://foundation.zurb.com/docs/media-queries.html
+================= */
+
+// Small screens
+@media only screen { } /* Define mobile styles */
+@media only screen and (max-width: 40em) { } /* max-width 640px, mobile-only styles, use when QAing mobile issues */
+
+// Medium screens
+@media only screen and (min-width: 40.063em) { } /* min-width 641px, medium screens */
+@media only screen and (min-width: 40.063em) and (max-width: 64em) { } /* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+
+// Large screens
+@media only screen and (min-width: 64.063em) { } /* min-width 1025px, large screens */
+@media only screen and (min-width: 64.063em) and (max-width: 90em) { } /* min-width 1025px and max-width 1440px, use when QAing large screen-only issues */
+
+// XLarge screens
+@media only screen and (min-width: 90.063em) { } /* min-width 1441px, xlarge screens */
+@media only screen and (min-width: 90.063em) and (max-width: 120em) { } /* min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues */
+
+// XXLarge screens
+@media only screen and (min-width: 120.063em) { } /* min-width 1921px, xxlarge screens */
