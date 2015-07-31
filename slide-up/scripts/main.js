@@ -295,14 +295,20 @@ $('.cir-county').focus(function(){
 
 
 /* Expand (slide up) the panel with the 'enter' key on a selected path */
+var toosoon = false;
 $('.cir-county').keydown(function(e){ 
   var code = e.which;
   // 13 = Return
   if (code === 13) {
-    var panel = $('.panel-hed');
-    expandPanel(panel);
-    $(e.target).unbind('keydown');
-  }
+    if (!toosoon){
+      var panel = $('.panel-hed');
+      expandPanel(panel);
+      toosoon = true; //don't re-fire the event if the CSS transition isn't complete
+      setTimeout(function(){
+        toosoon = false;
+      }, 500);
+    };
+  };
 });
 
 /* Remove focus from the expanded panel to return focus to the previous path selection */

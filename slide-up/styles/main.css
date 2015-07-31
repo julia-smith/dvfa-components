@@ -515,7 +515,6 @@ p.credit {
   transition-property: top;
   transition-duration: .15s;
   transition-timing-function: ease-out;
-  opacity: 100;
   top: 88%;
   height: 35%;
 }
@@ -524,13 +523,12 @@ p.credit {
   transition-property: top;
   transition-duration: .25s;
   transition-timing-function: ease-out;
-  opacity: 100;
   display: block;
   top: 65%;
 }
 
 .panel-hed {
-  padding:.75em;
+  padding:1em .75em;
   color:#fff;
   font-size: 1.5em;
 }
@@ -544,14 +542,7 @@ p.credit {
   width: 100%;
   position: absolute;
   padding:0 1em 1em;
-  opacity:0;
-}
-.info-panel.expanded .panel-expanded {
   background-color:#fff;
-  opacity:1;
-  transition-property: opacity;
-  transition-duration: .25s;
-  transition-timing-function: ease-out;
 }
 .panel-expanded:focus {
   outline:none;
